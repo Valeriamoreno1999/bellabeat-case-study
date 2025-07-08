@@ -1,2 +1,2 @@
 # bellabeat-case-study
-Google Data Analytics Capstone: Bellabeat Case Study
+Analysis of the Bellabeat case study for the Google Data Analytics Professional Certificate. Exploring fitness device usage data to generate marketing recommendations.
