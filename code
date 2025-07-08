@@ -6,7 +6,6 @@ install.packages("broom")             #to convert models (like lm) into sorted d
 install.packages("ggthemes")          #to improve the aesthetics of ggplot2 graphics
 install.packages("scales")            #to control axes, percentages, scales in graphs
 
-
 library(tidyverse)                    #to data science ggplot2, dplyr, readr, tidyr
 library(lubridate)                    #to work with dates and hours
 library(broom)                        #convert statistics results in order data frame
