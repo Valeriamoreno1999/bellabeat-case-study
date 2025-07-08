@@ -25,7 +25,7 @@ ROCCC
 **Cited:** ALTA. Los datos están bien documentados y son de una fuente verificable.
 Despite the limitations, the data are useful for exploratory analysis and for practicing the data analysis process.
 
-## Tools Used
+# Tools Used
 **R (Excel):** For data cleansing and transformation, as well as for statistical analysis and creating visualizations.
 **GitHub:** For hosting the portfolio and documenting the process.
 
@@ -44,12 +44,14 @@ Aquí se presentan algunos de los hallazgos clave del análisis exploratorio.
 
 #### Finding 1: Most activity occurs in the afternoon.
 Users are most active between 12:00 PM and 7:00 PM. This could indicate that they exercise after work.
+
 ![Graphic average steps per hour of day](Visualizations/average_steps_per_hour.png)
 
 This time represents an optimal window for sending notifications, movement reminders, or motivational messages, as it coincides with the time of greatest physical receptivity.
 
 #### Finding 2: 61.8% of users showed an improvement in their daily activity throughout the month.
 More than half of users progressively increased their daily step count.
+
 ![Daily step evolution by user](Visualizations/daily_step_evolution_by_user.png.png)
 
 Bellabeat can position its products as motivators of positive change. This allows for strengthening campaigns focused on self-improvement, monthly challenges, or real-life testimonials of progress.
