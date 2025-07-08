@@ -45,8 +45,8 @@ Aquí se presentan algunos de los hallazgos clave del análisis exploratorio.
 #### Hallazgo 1: La mayoría de la actividad se concentra en la tarde.
 Los usuarios son más activos entre las 17:00 y las 19:00. Esto podría indicar que hacen ejercicio después del trabajo.
 
-![Gráfico de Pasos por Hora del Día](visualizaciones/pasos_por_hora.png)
-*(Aquí insertas tu propio gráfico. Súbelo a la carpeta `visualizaciones` y enlaza como se muestra)*
+![graphic average steps per hour of day](visualizaciones/average_steps_per_hour.png)
+
 
 #### Hallazgo 2: Fuerte correlación entre pasos y calorías quemadas.
 Como era de esperar, hay una relación lineal positiva entre la cantidad de pasos dados y las calorías quemadas.
