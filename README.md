@@ -4,7 +4,7 @@ Analysis of the Bellabeat case study for the Google Data Analytics Professional 
 # Caso de Estudio Bellabeat: Análisis de Datos para una Estrategia de Marketing
 ## Introducción
 This is my final project for the *Google Professional Certificate in Data Analytics*. The objective of this case study is to analyze fitness device usage data to gain insights into how consumers use their devices. The resulting insights will be used to guide the marketing strategies of *Bellabeat*, a high-tech company that makes wellness products for women.
-# Stakeholders
+**Stakeholders**
 **Urška Sršen:** Co-founder and Creative Director of Bellabeat.
 **Sando Mur:** Co-founder and key mathematician on the executive team.
 **Equipo de Marketing de Bellabeat:** Responsible for the marketing strategy.
@@ -25,7 +25,7 @@ ROCCC
 **Cited:** ALTA. Los datos están bien documentados y son de una fuente verificable.
 Despite the limitations, the data are useful for exploratory analysis and for practicing the data analysis process.
 
-# Tools Used
+**Tools Used**
 **R (Excel):** For data cleansing and transformation, as well as for statistical analysis and creating visualizations.
 **GitHub:** For hosting the portfolio and documenting the process.
 
