@@ -42,16 +42,22 @@ To see the complete cleaning and transformation code, you can see the following 
 
 Aquí se presentan algunos de los hallazgos clave del análisis exploratorio.
 
-#### Hallazgo 1: La mayoría de la actividad se concentra en la tarde.
-Los usuarios son más activos entre las 17:00 y las 19:00. Esto podría indicar que hacen ejercicio después del trabajo.
-
+#### Finding 1: Most activity occurs in the afternoon.
+Users are most active between 12:00 PM and 7:00 PM. This could indicate that they exercise after work.
 ![Graphic average steps per hour of day](Visualizations/average_steps_per_hour.png)
 
+This time represents an optimal window for sending notifications, movement reminders, or motivational messages, as it coincides with the time of greatest physical receptivity.
+
+#### Finding 2: 61.8% of users showed an improvement in their daily activity throughout the month.
+More than half of users progressively increased their daily step count.
+![Daily step evolution by user](Visualizations/daily_step_evolution_by_user.png.png)
+
+Bellabeat can position its products as motivators of positive change. This allows for strengthening campaigns focused on self-improvement, monthly challenges, or real-life testimonials of progress.
 
 #### Hallazgo 2: Fuerte correlación entre pasos y calorías quemadas.
 Como era de esperar, hay una relación lineal positiva entre la cantidad de pasos dados y las calorías quemadas.
 
-![Relación Pasos vs. Calorías](visualizaciones/relacion_pasos_calorias.png)
+![Relación Pasos vs. Calorías](Visualizations/daily_step_evolution_by_user.png.png)
 
 #### Hallazgo 3: El uso del dispositivo es inconsistente.
 Un número significativo de usuarios no registra su actividad o sueño todos los días. Esto sugiere una oportunidad para mejorar el engagement del usuario.
