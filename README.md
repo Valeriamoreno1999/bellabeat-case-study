@@ -39,8 +39,7 @@ To see the complete cleaning and transformation code, you can see the following 
 
 
 ### Analyze
-
-Aquí se presentan algunos de los hallazgos clave del análisis exploratorio.
+Here are some of the key findings from the exploratory analysis.
 
 #### Finding 1: Most activity occurs in the afternoon.
 Users are most active between 12:00 PM and 7:00 PM. This could indicate that they exercise after work.
@@ -52,7 +51,7 @@ This time represents an optimal window for sending notifications, movement remin
 #### Finding 2: 61.8% of users showed an improvement in their daily activity throughout the month.
 More than half of users progressively increased their daily step count.
 
-![Daily step evolution by user](Visualizations/daily_step_evolution_by_user.png.png)
+![Daily step evolution by user](Visualizations/daily_step_evolution_by_user.png)
 
 Bellabeat can position its products as motivators of positive change. This allows for strengthening campaigns focused on self-improvement, monthly challenges, or real-life testimonials of progress.
 
