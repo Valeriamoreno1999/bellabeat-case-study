@@ -1,0 +1,4 @@
+Source of data: FitBit Fitness Tracker Data
+
+This dataset is publicly available on Kaggle. It can be downloaded from the following link:
+https://www.kaggle.com/datasets/arashnic/fitbit
