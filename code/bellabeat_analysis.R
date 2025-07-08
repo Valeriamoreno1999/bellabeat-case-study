@@ -1,4 +1,4 @@
-#Intallation packages 
+#installation packages 
 install.packages("tidyverse")         #to facilitate data analysis and data science
 install.packages("lubridate")         #to work with dates and times
 install.packages("pscl")              #binaries regression
@@ -13,17 +13,16 @@ library(broom)                        #convert statistics results in order data 
 library(ggthemes)                     #aesthetic to graph
 library(scales)                       #formatted numeric scale
 
-#Work directory
+#work directory
 setwd("C:/Users/57322/Documents/Proyecto-bellabeat")
 
-#Charger all documents that I will need
+#charger all documents that I will need
 daily_activity <- read.csv2("dailyActivity_merged.csv")
 sleep_data <- read.csv2("minuteSleep_merged.csv")
 steps_data <- read.csv2("hourlySteps_merged.csv")
 hourly_intensities <- read.csv2("hourlyIntensities_merged.csv")
 
-#CLEAN
-#steps data
+#clean steps data
 colSums(is.na(steps_data))              #nules values
 sum(duplicated(steps_data))             #duplicated values
 steps_data <- steps_data %>%            #make sure about the time
@@ -42,10 +41,10 @@ activity_per_hour <- steps_data %>% #dataframe with the steps data per hour
   group_by(hour) %>% #group the data by hour
   summarise(steps_prom = mean(StepTotal, na.rm = TRUE)) #summarize the data by group, steps prom, calculate the average  of steps by hour in every day and users, na.rm=true indicateS that null  values are ignored
 
-# Ver resultados
+#see results
 print(activity_per_hour)
 
-#Graphic Average steps per hour of day
+#graphic average steps per hour of day
 ggplot(activity_per_hour, aes(x = hour, y = steps_prom)) +
   geom_line(color = "darkblue", linewidth = 1.3) +    # line darkblue
   geom_point(color = "blue") +                        # point blue small
@@ -74,7 +73,7 @@ steps_daily <- steps_data %>%
 head(steps_daily, 10)                                               #show than firts files to check it
 
 
-#Graph daily steps evolution graph per user
+#graph daily steps evolution graph per user
 ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of total daily steps for each user
   geom_line(color = "steelblue", linewidth = 0.7) +          #add a line for daily steps
   geom_point(color = "gray60", linewidth = 0.5) +            #add small gray points for each day
@@ -100,11 +99,11 @@ ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of t
   )
 
 
-#Numeric Format
+#numeric Format
 steps_daily <- steps_daily %>%                        #dataframe with numeric format
   mutate(date_num = as.numeric(date))
 
-#Calculate the slope per user using linear regression
+#calculate the slope per user using linear regression
 slope <- steps_daily %>%                              #dataframe with slope
   group_by(Id) %>%
   do(tidy(lm(total_steps ~ date_num, data = .))) %>%  #user-based model adjustment
@@ -128,12 +127,12 @@ porcentaje_positive <- round((positive / total_ids) * 100, 1)
 cat("Percentage of users with an increasing trend in steps:", porcentaje_positive, "%\n")
 
 
-#Now, go to clean sleep data to can to do relation between sleep and physical activity
+#now, go to clean sleep data to can to do relation between sleep and physical activity
 #sleep data
 colSums(is.na(sleep_data))                                                    #nules values
 sum(duplicated(sleep_data))                                                   #duplicated values
 
-#A new colum called datatime that provides the correct format
+#new colum called datatime that provides the correct format
 sleep_data <- sleep_data %>%                                                  #modify the same document and save the results
   mutate(                                                                     #create one column or modify existing columns
     datetime = parse_date_time(date,                                          #create a new column called datetime from the column date, but change a date and hour format
@@ -147,153 +146,106 @@ nrow(sleep_data)                                                              #N
 
 
 
-  sleeep_summary <- sleep_data %>%
-  # Agrupamos los datos ÚNICAMENTE por la fecha.
-  # Se combinarán los registros de todos los 'Id' para cada día.
-  group_by(Id, date) %>% # <- ¡ESTE ES EL CAMBIO CLAVE!
-  
-  # summarize() ahora calcula los totales para cada día completo.
-  summarise(
-    asleep_seconds = sum(value == 1, na.rm = TRUE),
-    restless_seconds = sum(value == 2, na.rm = TRUE),
-    awake_seconds = sum(value == 3, na.rm = TRUE),
-    .groups = 'drop' # Desagrupar después de resumir
-  ) %>%
-  
-  # mutate() añade las columnas de métricas basadas en los totales diarios
-  mutate(
-    
-    total_seconds_in_bed = asleep_seconds + restless_seconds + awake_seconds,
-    hours_sleep=round(total_seconds_in_bed/60,2),
-    
-    sleep_efficiency = if_else(
-      total_seconds_in_bed > 0,
-      (asleep_seconds / total_seconds_in_bed) * 100,
-      2
-    ),
-    
-    efficiency_category = case_when(
-      sleep_efficiency > 90 ~ "Excellent",
-      sleep_efficiency > 75 ~ "Good",
-      sleep_efficiency > 50 ~ "Regular",
-      TRUE                  ~ "Bad"
-    )
+sleeep_summary <- sleep_data %>% 
+group_by(Id, date) %>%             #data is grouped only by date.
+summarise(                         #calculates totals for each full day.
+  asleep_seconds = sum(value == 1, na.rm = TRUE),
+  restless_seconds = sum(value == 2, na.rm = TRUE),
+  awake_seconds = sum(value == 3, na.rm = TRUE),
+  .groups = 'drop'                 #ungroup after summarizing
+) %>%
+mutate(                            #adds the metric columns based on the daily totals
+  total_seconds_in_bed = asleep_seconds + restless_seconds + awake_seconds, #summarize total seconds in bed
+  hours_sleep=round(total_seconds_in_bed/60,2),                             #calculate hours sleep and convert seconds to hours
+  sleep_efficiency = if_else(
+    total_seconds_in_bed > 0,                              #if the seconds is more that 0, classify the sleep efficiency
+    (asleep_seconds / total_seconds_in_bed) * 100,         #this is ecuation
+    2
+  ),
+  efficiency_category = case_when(
+    sleep_efficiency > 90 ~ "Excellent",
+    sleep_efficiency > 75 ~ "Good",
+    sleep_efficiency > 50 ~ "Regular",
+    TRUE                  ~ "Bad"
   )
+)
 
-# --- 3. Mostrar el resultado final ---
+#show final result
 print(sleeep_summary)
 
-#source: https://medlineplus.gov/spanish/pruebas-de-laboratorio/estudio-del-sueno/#:~:text=Un%20porcentaje%20de%20ox%C3%ADgeno%20inferior,por%20minuto%20se%20considera%20normal.  
-
-
-
+#source to classify sleep efficiency: https://medlineplus.gov/spanish/pruebas-de-laboratorio/estudio-del-sueno/#:~:text=Un%20porcentaje%20de%20ox%C3%ADgeno%20inferior,por%20minuto%20se%20considera%20normal.  
+#graph to show distribution of sleep hours per user 
 ggplot(data = sleeep_summary, 
-       aes(x = factor(Id), y = hours_sleep, fill = factor(Id))) +
-  
-  # Añadir la capa del diagrama de cajas
-  geom_boxplot() +
-  
-  # (Opcional) Añadir los puntos de datos individuales para más detalle
-  geom_jitter(width = 0.1, alpha = 0.6, color = "black") +
-  
-  # Mejorar las etiquetas y el título
-  labs(
-    title = "Distribución de horas del Sueño por Usuario",
-    subtitle = "Cada punto representa la eficiencia de una noche de sueño",
-    x = "ID del Usuario",
-    y = "horas de sueño"
+       aes(x = factor(Id), y = hours_sleep, fill = factor(Id))) +   #select axis x and y 
+  geom_boxplot() +                                                  #add the box plot layer
+  geom_jitter(width = 0.1, alpha = 0.6, color = "black") +          #add individual data points for more detail
+  labs(                                                             #improve tags and title
+    title = "Distribution of Sleep Hours per User",
+    subtitle = "Each point represents the efficiency of a night's sleep",
+    x = "User ID",
+    y = "Sleep hours" 
   ) +
-  
-  # Quitar la leyenda, ya que el eje X ya muestra el ID
-  theme_minimal() +
+  theme_minimal() +                                                 #remove the legend, since the X axis already shows the ID
   theme(legend.position = "none")
 
 
-
-##########ELIMINAR HORAS FUERA DEL DIAGRAMA DE CAJAS
-# Asegúrate de tener tu tabla 'sleep_summary_with_hours' creada
-# (Si no la tienes, ejecuta el código de la respuesta anterior para generarla)
-
-
-# --- Paso 1: Calcular los límites para cada usuario ---
+#now, remove the outliers from the graph above
+#calculate limits for each user
 outlier_bounds <- sleeep_summary %>%
-  group_by(Id) %>% # ¡Importante! Calcular límites para cada grupo
+  group_by(Id) %>%
   summarise(
-    Q1 = quantile(hours_sleep, 0.25, na.rm = TRUE),
-    Q3 = quantile(hours_sleep, 0.75, na.rm = TRUE),
+    Q1 = quantile(hours_sleep, 0.25, na.rm = TRUE),  #quantile Q1
+    Q3 = quantile(hours_sleep, 0.75, na.rm = TRUE),  #quantile Q3
     IQR = Q3 - Q1,
-    lower_bound = Q1 - 1.5 * IQR,
-    upper_bound = Q3 + 1.5 * IQR,
+    lower_bound = Q1 - 1.5 * IQR,                   #lower bounds with Q1 quantile
+    upper_bound = Q3 + 1.5 * IQR,                   #upper bounds Q3 quantile
     .groups = 'drop'
   )
 
-print(outlier_bounds)
+print(outlier_bounds)  #to see outlier bounds
 
-# --- Paso 2: Unir los límites a la tabla original y filtrar ---
-# Usamos left_join para añadir los límites a cada fila correspondiente a su Id
+#join the limits to the original table and filter and use left_join to add the limits to each row corresponding to its ID
 sleep_data_no_outliers <- sleeep_summary %>%
   left_join(outlier_bounds, by = "Id") %>%
-  # Filtramos para quedarnos solo con las filas dentro de los límites
-  filter(hours_sleep >= lower_bound & hours_sleep <= upper_bound)
+  filter(hours_sleep >= lower_bound & hours_sleep <= upper_bound) #filter to keep only the rows within the limits
 
-# --- Paso 3: Volver a crear el gráfico con los datos filtrados ---
-
+#recreate the chart with the filtered data
 ggplot(data = sleep_data_no_outliers, aes(x = factor(Id), y = hours_sleep, fill = factor(Id))) +
-  geom_boxplot(outlier.shape = NA) + # outlier.shape = NA para que no dibuje los puntos que podrían seguir siendo outliers en el nuevo cálculo
+  geom_boxplot(outlier.shape = NA) +         # outlier.shape NA that it doesn't draw points that might still be outliers in the recalculation
   geom_jitter(width = 0.1, alpha = 0.6, color = "black") +
   labs(
-    title = "Distribución de Horas de Sueño por Usuario (SIN OUTLIERS)",
-    subtitle = "Se eliminaron los puntos que caían fuera de los bigotes del gráfico original",
-    x = "ID del Usuario",
-    y = "Horas de sueño"
+    title = "New distribution of Sleep Hours per User",
+    subtitle = "Points that fell outside the whiskers of the original graph were removed",
+    x = "User ID",
+    y = "Sleep hours"
   ) +
   theme_bw() +
   theme(
     legend.position = "none",
-    axis.text.x = element_text(angle = 15, hjust = 1) # Mejorar la lectura de los IDs
+    axis.text.x = element_text(angle = 15, hjust = 1) #improve reading of IDs
   )
-
-
-
-
-
-
-
-
-
-
-
 
 
 #calculate percentage per category
 percentage_by_quality <- sleep_data_no_outliers %>%
-  group_by(avg_quality = efficiency_category) %>%      #rename the grouping variable to avg_quality for readability
-  summarise(n = n()) %>%                         #we count how many rows fall in to categories
-  mutate(
-    percent = round(n / sum(n) * 100, 1),        #new column percent and calculates the percentage that each sleep quality represents out of the total and rounds it to 1 decimal.
-    label = paste0(percent, "%"),                #column label is created for the plot, combining the percent value with the "%" symbol to use it as a label in a chart
-    ypos = cumsum(percent) - 0.6 * percent       #calculates the vertical position for each label if used in a stacked or donut chart and center each slice
+  group_by(avg_quality = efficiency_category) %>%     #rename the grouping variable to avg_quality for readability
+  summarise(n = n()) %>%                              #we count how many rows fall in to categories
+  mutate( 
+    percent = round(n / sum(n) * 100, 1),             #new column percent and calculates the percentage that each sleep quality represents out of the total and rounds it to 1 decimal.
+    label = paste0(percent, "%"),                     #column label is created for the plot, combining the percent value with the "%" symbol to use it as a label in a chart
+    ypos = cumsum(percent) - 0.6 * percent            #calculates the vertical position for each label if used in a stacked or donut chart and center each slice
   )
 
 show(percentage_by_quality)
 
 
-
-
-
-
-
-
 #join data sets
 #make sure that data sets are clean and have the same date per ID
 comparasion_data <- sleeep_summary %>%       
-  select(Id, date, hours_sleep) %>%                             #Keep only the columns needed user ID, date, and sleep in hour
+  select(Id, date, hours_sleep) %>%                             #keep only the columns needed user ID, date, and sleep in hour
   inner_join(steps_daily, by = c("Id", "date"))                 #join steps_daily with total_steps
 
-
-
-#Restructure to graph easily
-
+#restructure to graph easily
 comparasion_long <- comparasion_data %>%
   pivot_longer(cols = c(hours_sleep, total_steps), #select the columns to reshape
                names_to = "variable",              #name for the new column
@@ -313,7 +265,7 @@ comparasion_scaled <- comparasion_data %>%
                values_to = "value")
 
 
-#Graph Daily comparison: sleep vs. steps per User
+#graph daily comparison: sleep vs. steps per User
 ggplot(comparasion_scaled, aes(x = date, y = value, color = variable)) +
   geom_line(size = 0.8) +                                             #add a line for comparasion scaled
   geom_point(size = 1) +
@@ -343,7 +295,7 @@ correlation_per_user <- comparasion_data %>%
     n_dias = n()                      #number of days registered for that user
   )
 
-## Classify users according to the type of correlation they present
+#classify users according to the type of correlation they present
 correlation_per_user <- correlation_per_user %>%
   mutate(
     type_correlation = case_when(
@@ -387,26 +339,24 @@ ggplot(correlation_per_user, aes(x = type_correlation)) +
 
 
 #daily Activity's clean and processes
-
 colSums(is.na(daily_activity))                      #count empty rows
 sum(duplicated(daily_activity))                     #duplicated values
 daily_activity <- daily_activity %>%
   rename(date = ActivityDate) %>%
   mutate(date = as.Date(date, format = "%m/%d/%Y"))
 
-# See how many days different have each ID
+#see how many days different have each ID
 daily_activity %>%
   group_by(Id) %>%                                  #group the data by user
-  summarize(distinc_days = n_distinct(date)) %>% #calculating how many unique days each user
+  summarize(distinc_days = n_distinct(date)) %>%    #calculating how many unique days each user
   arrange(desc(distinc_days)) %>%                   #sorted the users started to have more register days
   print(n = Inf)
 
-# Select only the necessary columns
+#select only the necessary columns
 daily_activity <- daily_activity %>%
   select(Id, date, VeryActiveMinutes, FairlyActiveMinutes, LightlyActiveMinutes, SedentaryMinutes, Calories)
 
-
-# Classify the daily activity
+#classify the daily activity
 daily_activity <- daily_activity %>% 
   mutate(activity_level_minutes = case_when(            #create one columns or modify existing columns
     VeryActiveMinutes > 60 ~ "Very Active",             #if more than 60 minutes very active is very active
@@ -420,21 +370,20 @@ daily_activity <- daily_activity %>%                    #remove rows that were n
 
 #source: https://vidauniversitaria.uanl.mx/expertos/sedentarismo-amenaza-a-la-salud-mundial/
 
-# Verify the first results
+#verify the first results
 head(daily_activity)
 
-#Graph that show the percentage of days according to activity level
+#graph that show the percentage of days according to activity level
 daily_activity %>%
-  count(activity_level_minutes) %>%      #count how many days fall into each activity level category
+  count(activity_level_minutes) %>%                  #count how many days fall into each activity level category
   mutate(percent = round(n / sum(n) * 100, 1)) %>%   #calculate the percentage each category represents
   ggplot(aes(x = reorder(activity_level_minutes, -percent), y = percent, fill = activity_level_minutes)) +   #reorder categories from highst to lowest percentage
-  geom_col() +                                             #create a bar chart
+  geom_col() +                                       #create a bar chart
   geom_text(aes(label = paste0(percent, "%")), vjust = -0.5, fontface = "bold") +   #add percentage labels on top of each bar and adjust vertical position and make text bold
   labs(title = "Percentage of days according to activity level",          
        x = "Activity level",
        y = "Percentage") +
   theme_minimal()                                      #apply a clean theme
-
 
 #join daily activity y sleep
 #join data sets
@@ -444,15 +393,14 @@ deam_activity <- inner_join(daily_activity,
                               select(Id, date, hours_sleep),                               #keep only necessary columns
                               by = c("Id", "date"))                                        #join on matching user ID and date
 
-
 #compare sleep averages
 #bar chart showing average hours of sleep by activity level
 deam_activity %>%
-  group_by(activity_level_minutes) %>%                      #goup data by classified daily activity level
+  group_by(activity_level_minutes) %>%                        #goup data by classified daily activity level
   summarise(avg_sleep = mean(hours_sleep, na.rm = TRUE)) %>%  #calculate average sleep hours per group
   ggplot(aes(x = reorder(activity_level_minutes, -avg_sleep),  #order bars from highest to lowest average sleep
              y = avg_sleep, fill = activity_level_minutes)) +  #fill bars by activity level
-  geom_col() +                                               #create a bar chart
+  geom_col() +                                                #create a bar chart
   geom_text(aes(label = paste0(round(avg_sleep, 1), " hrs")), #add average values on top of bars
             vjust = -0.5, fontface = "bold") +                #djust text position and make bold
   labs(
@@ -464,4 +412,3 @@ deam_activity %>%
   theme(
     plot.title = element_text(hjust = 0.5, face = "bold", size = 14)  #center the title and make it bold
   )
-
