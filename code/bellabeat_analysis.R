@@ -6,7 +6,6 @@ install.packages("broom")             #to convert models (like lm) into sorted d
 install.packages("ggthemes")          #to improve the aesthetics of ggplot2 graphics
 install.packages("scales")            #to control axes, percentages, scales in graphs
 
-
 library(tidyverse)                    #to data science ggplot2, dplyr, readr, tidyr
 library(lubridate)                    #to work with dates and hours
 library(broom)                        #convert statistics results in order data frame
@@ -65,13 +64,11 @@ ggplot(activity_per_hour, aes(x = hour, y = steps_prom)) +
 
 #conclusions: The hour between 12 pm to 7 pm is average steps per hour of day for all users
 
-
 #Group by user (Id) and date to obtain the total steps daily
 steps_daily <- steps_data %>%
   group_by(Id, date) %>%                                            #group by user ID and date
   summarise(total_steps = sum(StepTotal, na.rm = TRUE), .groups = "drop")  #total sum per day
 head(steps_daily, 10)                                               #show than firts files to check it
-
 
 #graph daily steps evolution graph per user
 ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of total daily steps for each user
@@ -97,7 +94,6 @@ ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of t
     plot.background = element_rect(fill = "gray95", color = NA),      #light gray
     panel.background = element_rect(fill = "gray95", color = NA)      #light gray panel background
   )
-
 
 #numeric Format
 steps_daily <- steps_daily %>%                        #dataframe with numeric format
@@ -126,7 +122,6 @@ porcentaje_positive <- round((positive / total_ids) * 100, 1)
 #show
 cat("Percentage of users with an increasing trend in steps:", porcentaje_positive, "%\n")
 
-
 #now, go to clean sleep data to can to do relation between sleep and physical activity
 #sleep data
 colSums(is.na(sleep_data))                                                    #nules values
@@ -143,10 +138,8 @@ sleep_data <- sleep_data %>%                                                  #m
   )
 str(sleep_data)                                                               #Verify the data structure
 nrow(sleep_data)                                                              #Number of rows 198034
-
-
-
-sleeep_summary <- sleep_data %>% 
+                                     
+sleeep_summary <- sleep_data %>%  #create new table to group by Id and date
 group_by(Id, date) %>%             #data is grouped only by date.
 summarise(                         #calculates totals for each full day.
   asleep_seconds = sum(value == 1, na.rm = TRUE),
@@ -188,7 +181,6 @@ ggplot(data = sleeep_summary,
   theme_minimal() +                                                 #remove the legend, since the X axis already shows the ID
   theme(legend.position = "none")
 
-
 #now, remove the outliers from the graph above
 #calculate limits for each user
 outlier_bounds <- sleeep_summary %>%
@@ -225,7 +217,6 @@ ggplot(data = sleep_data_no_outliers, aes(x = factor(Id), y = hours_sleep, fill 
     axis.text.x = element_text(angle = 15, hjust = 1) #improve reading of IDs
   )
 
-
 #calculate percentage per category
 percentage_by_quality <- sleep_data_no_outliers %>%
   group_by(avg_quality = efficiency_category) %>%     #rename the grouping variable to avg_quality for readability
@@ -237,7 +228,6 @@ percentage_by_quality <- sleep_data_no_outliers %>%
   )
 
 show(percentage_by_quality)
-
 
 #join data sets
 #make sure that data sets are clean and have the same date per ID
@@ -263,7 +253,6 @@ comparasion_scaled <- comparasion_data %>%
   pivot_longer(cols = c(sleep_scaled, steps_scaled),   #Remodel the two new scaled columns
                names_to = "variable",                  #name for the column with variable name
                values_to = "value")
-
 
 #graph daily comparison: sleep vs. steps per User
 ggplot(comparasion_scaled, aes(x = date, y = value, color = variable)) +
@@ -311,7 +300,6 @@ correlation_per_user <- correlation_per_user %>%
 print(correlation_per_user, n = Inf)
 count(correlation_per_user, type_correlation)
 
-
 #graph to see distribution of users by type of correlation
 ggplot(correlation_per_user, aes(x = type_correlation)) +
   geom_bar(fill = "steelblue", color = "black", width = 0.7) +  #blue bars with black border
@@ -335,8 +323,6 @@ ggplot(correlation_per_user, aes(x = type_correlation)) +
     plot.background = element_rect(fill = "grey", color = NA),            #gray background
     axis.text.x = element_text(angle = 20, hjust = 1)                     #tilt x-axis labels
   )
-
-
 
 #daily Activity's clean and processes
 colSums(is.na(daily_activity))                      #count empty rows
