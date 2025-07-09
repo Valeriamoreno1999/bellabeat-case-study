@@ -55,15 +55,29 @@ More than half of users progressively increased their daily step count.
 
 Bellabeat can position its products as motivators of positive change. This allows for strengthening campaigns focused on self-improvement, monthly challenges, or real-life testimonials of progress.
 
-#### Hallazgo 2: Fuerte correlación entre pasos y calorías quemadas.
-Como era de esperar, hay una relación lineal positiva entre la cantidad de pasos dados y las calorías quemadas.
+#### Finding 3: Relationship between sleep and activity: no clear pattern for most users
+Most users showed weak or no correlations between sleep and daily steps (only two users showed a strong positive relationship).
 
-![Relación Pasos vs. Calorías](Visualizations/daily_step_evolution_by_user.png.png)
+![Relationship between sleep and activity](Visualizations/distribution_of_users_by_type_correlation.png)
 
-#### Hallazgo 3: El uso del dispositivo es inconsistente.
+Not all users respond equally to physical activity in terms of rest. This suggests an opportunity for personalization campaigns—"Your body, your rhythm"—or to include features that help users experiment with routines to find the one that best suits their well-being.
+
+
+#### Finding 4: The most common activity levels are "lightly active" and "sedentary."
+57.3% of the recorded days were "lightly active" and 24.1% were "sedentary."
+
+![Relationship between sleep and activity](Visualizations/Percetage_of_days_according_to_activity_level.png)
+
+
+Most users are moderately or low in activity. This represents a market opportunity to promote products and content that support small changes, such as accessible challenges, incremental achievements, or rewards for consistency, not intensity.
+
+#### Finding 5: El uso del dispositivo es inconsistente.
 Un número significativo de usuarios no registra su actividad o sueño todos los días. Esto sugiere una oportunidad para mejorar el engagement del usuario.
 
 ---
+
+
+
 
 ### Fase 5: Compartir (Share)
 
