@@ -1,4 +1,4 @@
-# bellabeat-case-study
+# Bellabeat-case-study
 Final project for the Google Data Analytics Professional Certificate. In this case study, I analyze smart device usage data to identify behavior patterns and generate actionable marketing recommendations for Bellabeat, a health-tech company focused on women's wellness.
 
 # Bellabeat Case Study: Data Analysis for a Marketing Strategy
@@ -24,7 +24,7 @@ ROCCC
 
 Despite limitations, the dataset is valid for practicing analytical thinking and exploring general user behavior patterns.
 
-**Tools Used**
+### Tools Used
 
 **R/RStudio (Excel):** Data wrangling, visualization, and analysis.
 **Tidyverse:** Data cleaning and transformation
