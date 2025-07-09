@@ -1,4 +1,4 @@
-# Bellabeat-case-study
+> # Bellabeat-case-study
 Final project for the Google Data Analytics Professional Certificate. In this case study, I analyze smart device usage data to identify behavior patterns and generate actionable marketing recommendations for Bellabeat, a health-tech company focused on women's wellness.
 
 # Bellabeat Case Study: Data Analysis for a Marketing Strategy
@@ -102,14 +102,14 @@ Based on the findings, here are my recommendations for Bellabeat's marketing str
 
 **Benefit:** It will increase daily device usage, strengthen the habit, and, as a result, improve long-term customer loyalty.
       
-**Recommendation 2:** Focus marketing on "balanced wellness," not just physical performance.
+> **Recommendation 2:** Focus marketing on "balanced wellness," not just physical performance.
 
    **Problem (Insight):** Data shows that physical activity is only one part of health; sleep and rest are equally important. Focusing only on "burning calories"       or "being the most athletic" can bore many women, as some people genuinely dislike exercising at all.
    **Solution (Suggestion):** Position Bellabeat as a tool for finding balance in life. Instead of aggressive performance marketing, create campaigns that talk         about how small changes in daily activity can improve sleep quality, reduce stress, and increase energy. Some messages would be: *"Bellabeat helps you take        care of yourself by finding your own rhythm."* o *"Exercise and mental health: always connected."*
    
    **Benefit:** Attract a broader audience of women looking for overall wellness, not just a high-performance fitness tracker. This differentiates Bellabeat from       the competition and creates a stronger emotional connection with its brand.
 
-**Recommendation 3:** Offer customization so each user feels unique.
+> **Recommendation 3:** Offer customization so each user feels unique.
 
    **Problem (Insight):** Every user is different. A "one-size-fits-all" plan doesn't work and can be demotivating. As seen above, the data shows variations in         activity levels and sleep patterns between individuals.
    
