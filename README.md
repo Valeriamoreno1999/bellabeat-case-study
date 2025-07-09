@@ -108,7 +108,6 @@ Based on the findings, here are my recommendations for Bellabeat's marketing str
 + **Problem (Insight):** Data shows that physical activity is only one part of health; sleep and rest are equally important. Focusing only on "burning calories"       or "being the most athletic" can bore many women, as some people genuinely dislike exercising at all.
   
 + **Solution (Suggestion):** Position Bellabeat as a tool for finding balance in life. Instead of aggressive performance marketing, create campaigns that talk         about how small changes in daily activity can improve sleep quality, reduce stress, and increase energy. Some messages would be:
-+ 
       + *"Bellabeat helps you take care of yourself by finding your own rhythm."*
       + *"Exercise and mental health: always connected."*
 
