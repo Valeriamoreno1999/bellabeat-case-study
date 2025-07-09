@@ -39,7 +39,7 @@ To see the complete cleaning and transformation code, you can see the following 
 
 
 ### Analyze
-Here are some of the key findings from the exploratory analysis.
+Here are some of the key findings from the exploratory analysis. Regarding the data, I decided to take it all since I have very little information to perform this type of analysis, although there are people who do not have a record of every day, and Ids who are not in all the tables, however, that will affect the analysis a little.
 
 #### Finding 1: Most activity occurs in the afternoon.
 Users are most active between 12:00 PM and 7:00 PM. This could indicate that they exercise after work.
