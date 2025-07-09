@@ -99,7 +99,6 @@ Based on the findings, here are my recommendations for Bellabeat's marketing str
 
 + **Solution (Suggestion):**
 *Timely notifications:* Send reminders and motivational messages through the Bellabeat app during times when users are typically most active (between 12 and 7 p.m.). A message like "It's a great time to go for a walk and reach your step goal!" can motivate the user.
-
 *Fun challenges:* Create monthly challenges within the app (e.g., "10,000 steps a day challenge") with virtual rewards like medals or badges. This is seen as      fun, encourages friendly competition, and encourages users to return to using the device daily.
 
 + **Benefit:** It will increase daily device usage, strengthen the habit, and, as a result, improve long-term customer loyalty.
