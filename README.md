@@ -92,7 +92,8 @@ Bar plot (sleep by activity level)
 
 Based on the findings, here are my recommendations for Bellabeat's marketing strategy:
 
-<ins>**Recommendation 1:**<ins> Create an experience that encourages consistency through smart notifications and challenges.
+<ins>**Recommendation 1:**<ins>
+Create an experience that encourages consistency through smart notifications and challenges.
 
 <ins> **Problem (insight):** <ins> I discovered that many users don't use their device daily. If a user doesn't develop the habit of using it, they're likely to abandon it.
 
