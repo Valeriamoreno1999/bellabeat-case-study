@@ -105,24 +105,25 @@ Based on the findings, here are my recommendations for Bellabeat's marketing str
       
 > **Recommendation 2:** Focus marketing on "balanced wellness," not just physical performance.
 
-   **Problem (Insight):** Data shows that physical activity is only one part of health; sleep and rest are equally important. Focusing only on "burning calories"       or "being the most athletic" can bore many women, as some people genuinely dislike exercising at all.
-   **Solution (Suggestion):** Position Bellabeat as a tool for finding balance in life. Instead of aggressive performance marketing, create campaigns that talk         about how small changes in daily activity can improve sleep quality, reduce stress, and increase energy. Some messages would be: *"Bellabeat helps you take        care of yourself by finding your own rhythm."* o *"Exercise and mental health: always connected."*
-   
-   **Benefit:** Attract a broader audience of women looking for overall wellness, not just a high-performance fitness tracker. This differentiates Bellabeat from       the competition and creates a stronger emotional connection with its brand.
++ **Problem (Insight):** Data shows that physical activity is only one part of health; sleep and rest are equally important. Focusing only on "burning calories"       or "being the most athletic" can bore many women, as some people genuinely dislike exercising at all.
+  
++ **Solution (Suggestion):** Position Bellabeat as a tool for finding balance in life. Instead of aggressive performance marketing, create campaigns that talk         about how small changes in daily activity can improve sleep quality, reduce stress, and increase energy. Some messages would be: *"Bellabeat helps you take        care of yourself by finding your own rhythm."* o *"Exercise and mental health: always connected."*
+
++ **Benefit:** Attract a broader audience of women looking for overall wellness, not just a high-performance fitness tracker. This differentiates Bellabeat from       the competition and creates a stronger emotional connection with its brand.
 
 > **Recommendation 3:** Offer customization so each user feels unique.
 
-   **Problem (Insight):** Every user is different. A "one-size-fits-all" plan doesn't work and can be demotivating. As seen above, the data shows variations in         activity levels and sleep patterns between individuals.
++ **Problem (Insight):** Every user is different. A "one-size-fits-all" plan doesn't work and can be demotivating. As seen above, the data shows variations in         activity levels and sleep patterns between individuals.
    
-   **Solution (Suggestion):** Use the data the Bellabeat app already collects to offer personalized advice. For example:
++ **Solution (Suggestion):** Use the data the Bellabeat app already collects to offer personalized advice. For example:
      If a user sleeps little but walks a lot, the app could suggest: 
-     *"We noticed you're very active. Did you know that 15 minutes of relaxation before bed could help you rest better so you'll have even more energy tomorrow?"* 
-     *"We noticed you're very active. Avoid stimulants like caffeine in the afternoon and evening, so you'll have a restful sleep."* 
-     *"Make sure your room is completely dark and quiet, so you'll sleep soundly."*
+     + *"We noticed you're very active. Did you know that 15 minutes of relaxation before bed could help you rest better so you'll have even more energy tomorrow?"* 
+     + *"We noticed you're very active. Avoid stimulants like caffeine in the afternoon and evening, so you'll have a restful sleep."* 
+     + *"Make sure your room is completely dark and quiet, so you'll sleep soundly."*
       If you can't sleep, create an interface in the app where you can see information suggesting activities to help you fall asleep. This way, you can avoid            sending too many notifications, as this could be harassing to the user.
       For a user with low activity, the app could celebrate small achievements:
-      *"Congratulations! Today you took 500 more steps than yesterday. Keep it up!"*  
-      *"You had an exceptional day today. If you manage to take 1,000 steps tomorrow, you'll get a badge."*
+      + *"Congratulations! Today you took 500 more steps than yesterday. Keep it up!"*  
+      + *"You had an exceptional day today. If you manage to take 1,000 steps tomorrow, you'll get a badge."*
       
-   **Benefit:** It makes the user feel that Bellabeat truly understands and supports them. This personalization dramatically increases the perceived value of the       product and fosters deep brand loyalt
++ **Benefit:** It makes the user feel that Bellabeat truly understands and supports them. This personalization dramatically increases the perceived value of the       product and fosters deep brand loyalt
    
