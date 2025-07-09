@@ -1,104 +1,109 @@
 # bellabeat-case-study
-Analysis of the Bellabeat case study for the Google Data Analytics Professional Certificate. Exploring fitness device usage data to generate marketing recommendations.
+Final project for the Google Data Analytics Professional Certificate. In this case study, I analyze smart device usage data to identify behavior patterns and generate actionable marketing recommendations for Bellabeat, a health-tech company focused on women's wellness.
 
-# Caso de Estudio Bellabeat: Análisis de Datos para una Estrategia de Marketing
+# Bellabeat Case Study: Data Analysis for a Marketing Strategy
+
 ## Introducción
-This is my final project for the *Google Professional Certificate in Data Analytics*. The objective of this case study is to analyze fitness device usage data to gain insights into how consumers use their devices. The resulting insights will be used to guide the marketing strategies of *Bellabeat*, a high-tech company that makes wellness products for women.
+Bellabeat wants to understand how women use health-tracking devices and how this behavior can inform the design, messaging, and features of their smart products. The ultimate goal is to improve user engagement, drive adoption, and strengthen their position in the wellness technology market.
 **Stakeholders**
 **Urška Sršen:** Co-founder and Creative Director of Bellabeat.
 **Sando Mur:** Co-founder and key mathematician on the executive team.
 **Equipo de Marketing de Bellabeat:** Responsible for the marketing strategy.
 
-### Ask
-Business Task
-Bellabeat, a technology company focused on women's wellness, seeks to better understand current trends in the use of smart health devices. The goal is to analyze data from users of these devices to identify behavioral patterns that can be applied to Bellabeat products. With this information, the company hopes to optimize its marketing strategies and make informed decisions that drive growth and market share.
-The company was gaining insights into how users interact with health-tracking technology. The main challenge is to identify patterns in user behavior from wearable fitness data to uncover trends that can guide product development and marketing strategies.
-These insights can drive business decisions such as improving user satisfaction, increasing device adoption, and strengthening your position in the wellness technology market.
+### Data source
+The data comes from the Fitbit Fitness Tracker dataset. It includes 30 users' daily activity, steps, sleep, and intensity data collected over 31 days.
 
-### Prepare
-The data is stored on Kaggle, from the FITBIT FITNESS TRACKER DATA dataset. The data is in wide format, with each row representing a day per user, and the columns representing the collected data, such as steps, calories, and active minutes.
+### ROCCC Analysis
+The data is stored on Kaggle, from the FITBIT FITNESS TRACKER DATA dataset.
 ROCCC
-**Reliable:** LOW. The sample size of 30 users is very small and not representative of the entire Fitbit user population.
-**Original:** LOW. This is third-party data (Fitbit) collected by Amazon Mechanical Turk.
-**Complete:** MEDIUM. The data includes metrics on steps, calories, sleep, and activity intensity, but lacks demographic information (age, gender, location) that would be key for marketing.
-**Consistent:** BAJA. Los datos son de 2016, por lo que las tendencias pueden haber cambiado.
-**Cited:** ALTA. Los datos están bien documentados y son de una fuente verificable.
-Despite the limitations, the data are useful for exploratory analysis and for practicing the data analysis process.
+**Reliable:** Low – Small sample size (30 users), not representative
+**Original:** Low – Third-party data collected via Amazon Mechanical Turk
+**Complete:** Medium – Lacks demographic data (age, gender, location)
+**Consistent:** Low – From 2016, trends may be outdated
+**Cited:** High – Documented and verifiable
+
+Despite limitations, the dataset is valid for practicing analytical thinking and exploring general user behavior patterns.
 
 **Tools Used**
-**R (Excel):** For data cleansing and transformation, as well as for statistical analysis and creating visualizations.
-**GitHub:** For hosting the portfolio and documenting the process.
+
+**R/RStudio (Excel):** Data wrangling, visualization, and analysis.
+**Tidyverse:** Data cleaning and transformation
+**ggplot2:** Visualizations
+**GitHub:** Project documentation and version control
 
 ### Process
-In this phase, I performed data cleaning and preparation to ensure data integrity before analysis.
-* Null and duplicate values ​​were checked.
-* Date and time formats were standardized.
-* Different tables (e.g., `dailyActivity` with `dailySleep`) were joined to create a consolidated dataset.
-To see the complete cleaning and transformation code, you can see the following scripts in the `code/` folder:
+Data cleaning steps:
+-Removed duplicates and NAs
+-Standardized datetime formats
+-Joined relevant tables (e.g. dailyActivity, sleepDay)
+-Created new variables (e.g. hourly averages, correlation metrics)
+See full code in bellabeat_analysis.R
 * [**R Script**](code/bellabeat_analysis.R)
 
 
 ### Analyze
-Here are some of the key findings from the exploratory analysis. Regarding the data, I decided to take it all since I have very little information to perform this type of analysis, although there are people who do not have a record of every day, and Ids who are not in all the tables, however, that will affect the analysis a little.
 
-#### Finding 1: Most activity occurs in the afternoon.
-Users are most active between 12:00 PM and 7:00 PM. This could indicate that they exercise after work.
+#### Finding 1: Most activity happens between 12:00 PM and 7:00 PM
+Users tend to be most active in the afternoon, suggesting ideal windows for app notifications or encouragement.
 
 ![Graphic average steps per hour of day](Visualizations/average_steps_per_hour.png)
 
-This time represents an optimal window for sending notifications, movement reminders, or motivational messages, as it coincides with the time of greatest physical receptivity.
-
-#### Finding 2: 61.8% of users showed an improvement in their daily activity throughout the month.
-More than half of users progressively increased their daily step count.
+#### Finding 2: 62% of users showed an improvement in their daily activity throughout the month.
+A majority of users showed positive behavioral change across the month. This supports Bellabeat positioning as a tool for long-term motivation.
 
 ![Daily step evolution by user](Visualizations/daily_step_evolution_by_user.png)
 
-Bellabeat can position its products as motivators of positive change. This allows for strengthening campaigns focused on self-improvement, monthly challenges, or real-life testimonials of progress.
-
-#### Finding 3: Relationship between sleep and activity: no clear pattern for most users
-Most users showed weak or no correlations between sleep and daily steps (only two users showed a strong positive relationship).
+#### Finding 3: Weak correlation between steps and sleep for most users
+Only 2 users showed a strong positive correlation. Sleep and physical activity may not be directly linked for all, suggesting the need for personalized recommendations.
 
 ![Relationship between sleep and activity](Visualizations/distribution_of_users_by_type_correlation.png)
 
-Not all users respond equally to physical activity in terms of rest. This suggests an opportunity for personalization campaigns—"Your body, your rhythm"—or to include features that help users experiment with routines to find the one that best suits their well-being.
 
-
-#### Finding 4: The most common activity levels are "lightly active" and "sedentary."
-57.3% of the recorded days were "lightly active" and 24.1% were "sedentary."
+#### Finding 4: Most users are sedentary or lightly active
+-57.3% of days: "Lightly Active"
+-24.1%: "Sedentary"
 
 ![Relationship between sleep and activity](Visualizations/Percetage_of_days_according_to_activity_level.png)
 
+This shows an opportunity to promote gentle, approachable routines.
 
-Most users are moderately or low in activity. This represents a market opportunity to promote products and content that support small changes, such as accessible challenges, incremental achievements, or rewards for consistency, not intensity.
+#### Finding 5: More activity ≠ more sleep
+Lightly Active: 7.3 hrs
+Sedentary: 6.9 hrs
+Very Active: 6.4 hrs
 
-#### Finding 5: El uso del dispositivo es inconsistente.
-Un número significativo de usuarios no registra su actividad o sueño todos los días. Esto sugiere una oportunidad para mejorar el engagement del usuario.
+![Average hours of sleep according activity level](Visualizations/average_hours_of_sleep_according_activity.png)
 
----
+Those who are moderately active sleep more, indicating a possible “sweet spot” for wellness.
 
+#### Finding 6: Inconsistent tracking among users
 
+Several users skipped days without logging steps or sleep. This points to a need for engagement strategies to improve consistency.
 
-
-### Fase 5: Compartir (Share)
-
-Las visualizaciones anteriores fueron creadas para comunicar claramente los hallazgos. Se eligieron gráficos de barras y de dispersión por su simplicidad y eficacia para mostrar tendencias y relaciones. El público objetivo de esta presentación son los stakeholders de Bellabeat, por lo que los gráficos son claros, con títulos y etiquetas descriptivas para facilitar su interpretación.
-
-*Si creaste un dashboard en Tableau, puedes poner una captura de pantalla y un enlace al dashboard público aquí.*
-
----
+### Share
+**Visualizations Used**
+Line plots (steps per hour)
+Multi-user time series (step evolution)
+Correlation category bar plot
+Stacked bar (activity levels)
+Bar plot (sleep by activity level)
 
 ### Fase 6: Actuar (Act)
 
-Basado en los hallazgos, aquí están mis tres principales recomendaciones para la estrategia de marketing de Bellabeat:
+Based on the findings, here are my recommendations for Bellabeat's marketing strategy:
 
-1.  **Recomendación 1: Fomentar el uso social y la consistencia.**
-    *   **Insight:** Los usuarios a menudo dejan de usar el dispositivo.
-    *   **Sugerencia:** Implementar notificaciones inteligentes y recordatorios en la app Bellabeat para motivar a los usuarios a registrar su actividad y sueño diariamente. Crear retos semanales o mensuales con recompensas virtuales podría aumentar el engagement.
+**Recommendation 1:** Create an experience that encourages consistency through smart notifications and challenges.
 
-2.  **Recomendación 2: Marketing enfocado en momentos clave del día.**
-    *   **Insight:** La actividad física se concentra por la tarde.
-    *   **Sugerencia:** Lanzar campañas de marketing en redes sociales o notificaciones push en la app Bellabeat durante la tarde (ej. "¡Es hora de moverte!") para inspirar a las usuarias a cumplir sus metas de actividad.
+   **Problem (insight):** I discovered that many users don't use their device daily. If a user doesn't develop the habit of using it, they're likely to abandon it.
+   **Solution (Suggestion):** 
+   Timely notifications: Send reminders and motivational messages through the Bellabeat app during times when users are typically most     active (between 12 and     7 p.m.). A message like "It's a great time to go for a walk and reach your step goal!" can motivate the user.
+   Fun challenges: Create monthly challenges within the app (e.g., "10,000 steps a day challenge") with virtual rewards like medals or badges. This is seen as        fun, encourages friendly competition, and encourages users to return to using the device daily.
+   **Benefit:** It will increase daily device usage, strengthen the habit, and, as a result, improve long-term customer loyalty.
+   
+**Recommendation 2:** Focus marketing on "balanced wellness," not just physical performance.
 
-3.  **Recomendación 3: Resaltar los beneficios integrales de salud.**
-    *   **Insight:** Los datos conectan actividad, sueño y calorías.
-    *   **Sugerencia:** Crear contenido de marketing (blog, videos, posts) que eduque a las usuarias sobre cómo la actividad física (pasos) no solo quema calorías, sino que también mejora la calidad del sueño y el bienestar general, conectando todas las funciones de los productos Bellabeat (Leaf, Time, App).
+*Problem (Insight):* Data shows that physical activity is only one part of health; sleep and rest are equally important. Focusing only on "burning calories" or "being the most athletic" can bore many women, as some people genuinely dislike exercising at all.
+
+Solution (Suggestion): Position Bellabeat as a tool for finding balance in life. Instead of aggressive performance marketing, create campaigns that talk about how small changes in daily activity can improve sleep quality, reduce stress, and increase energy. Some messages would be: "Bellabeat helps you take care of yourself by finding your own rhythm." "Exercise and mental health: always connected."
+
+The Benefit: Attract a broader audience of women looking for overall wellness, not just a high-performance fitness tracker. This differentiates Bellabeat from the competition and creates a stronger emotional connection with its brand.
