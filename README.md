@@ -56,14 +56,14 @@ A majority of users showed positive behavioral change across the month. This sup
 #### Finding 3: Weak correlation between steps and sleep for most users
 Only 2 users showed a strong positive correlation. Sleep and physical activity may not be directly linked for all, suggesting the need for personalized recommendations.
 
-![Relationship between sleep and activity](Visualizations/distribution_of_users_by_type_correlation.png)
+![Correlation between steps and sleep](Visualizations/distribution_of_users_by_type_correlation.png)
 
 
 #### Finding 4: Most users are sedentary or lightly active
 -57.3% of days: "Lightly Active"
 -24.1%: "Sedentary"
 
-![Relationship between sleep and activity](Visualizations/Percetage_of_days_according_to_activity_level.png)
+![Percentaje of days according to activity level](Visualizations/Percetage_of_days_according_to_activity_level.png)
 
 This shows an opportunity to promote gentle, approachable routines.
 
