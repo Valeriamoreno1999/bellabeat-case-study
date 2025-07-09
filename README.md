@@ -122,10 +122,10 @@ Based on the findings, here are my recommendations for Bellabeat's marketing str
      + *"We noticed you're very active. Avoid stimulants like caffeine in the afternoon and evening, so you'll have a restful sleep."* 
      + *"Make sure your room is completely dark and quiet, so you'll sleep soundly."*
 
-       If you can't sleep, create an interface in the app where you can see information suggesting activities to help you fall asleep. This way, you can avoid            sending too many notifications, as this could be harassing to the user.For a user with low activity, the app could celebrate small achievements:
+  If you can't sleep, create an interface in the app where you can see information suggesting activities to help you fall asleep. This way, you can avoid            sending too many notifications, as this could be harassing to the user.For a user with low activity, the app could celebrate small achievements:
        
-            + *"Congratulations! Today you took 500 more steps than yesterday. Keep it up!"*  
-            + *"You had an exceptional day today. If you manage to take 1,000 steps tomorrow, you'll get a badge."*
+  + *"Congratulations! Today you took 500 more steps than yesterday. Keep it up!"*  
+    + *"You had an exceptional day today. If you manage to take 1,000 steps tomorrow, you'll get a badge."*
             
 + **Benefit:** It makes the user feel that Bellabeat truly understands and supports them. This personalization dramatically increases the perceived value of the       product and fosters deep brand loyalt
    
