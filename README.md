@@ -60,8 +60,9 @@ Only 2 users showed a strong positive correlation. Sleep and physical activity m
 
 
 #### Finding 4: Most users are sedentary or lightly active
--57.3% of days: "Lightly Active"
--24.1%: "Sedentary"
+57.3% of days: "Lightly Active"
+
+24.1%: "Sedentary"
 
 ![Percentaje of days according to activity level](Visualizations/Percetage_of_days_according_to_activity_level.png)
 
