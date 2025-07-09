@@ -62,6 +62,9 @@ ggplot(activity_per_hour, aes(x = hour, y = steps_prom)) +
     panel.background = element_rect(fill = "gray90", color = NA)       #light gray background
   )
 
+
+ggsave("average_steps_per_hour.png", width = 8, height = 5, dpi = 300) #save image png
+getwd()
 #conclusions: The hour between 12 pm to 7 pm is average steps per hour of day for all users
 
 #Group by user (Id) and date to obtain the total steps daily
@@ -72,8 +75,8 @@ head(steps_daily, 10)                                               #show than f
 
 #graph daily steps evolution graph per user
 ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of total daily steps for each user
-  geom_line(color = "steelblue", linewidth = 0.7) +          #add a line for daily steps
-  geom_point(color = "gray60", linewidth = 0.5) +            #add small gray points for each day
+  geom_line(color = "steelblue", size = 0.7) +          #add a line for daily steps
+  geom_point(color = "gray60", size = 0.5) +            #add small gray points for each day
   geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "dashed", linewidth = 0.5) +
   facet_wrap(~ Id, scales = "free_y", labeller = labeller(Id = function(x) paste(x))) +   #Create one plot per user each with its own Y scale
   labs(                                                 #set chart title and axis labels
@@ -83,11 +86,11 @@ ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of t
   ) +
   theme_minimal(base_family = "sans") +
   theme(
-    plot.title = element_text(linewidth = 14, face = "bold", hjust = 0.5), #center title and make it bold
-    strip.text = element_text(linewidth = 8, color = "gray20"),            #titule
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), #center title and make it bold
+    strip.text = element_text(size = 8, color = "gray20"),            #titule
     axis.title = element_text(face = "bold"),                         #bold axis labels
-    axis.text.x = element_text(angle = 45, hjust = 1, linewidth = 6),      #rotate axis x text 
-    axis.text.y = element_text(linewidth = 6),                             #smaller axis x
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 6),      #rotate axis x text 
+    axis.text.y = element_text(size = 6),                             #smaller axis x
     panel.grid.major.x = element_blank(),                             #remove vertical grid lines
     panel.grid.minor = element_blank(),                               #removed minor grid
     panel.grid.major.y = element_line(color = "gray80"),              #horizontal lines  light
@@ -95,6 +98,8 @@ ggplot(steps_daily, aes(x = date, y = total_steps)) +   #create a line plot of t
     panel.background = element_rect(fill = "gray95", color = NA)      #light gray panel background
   )
 
+ggsave("daily_step_evolution_by_user.png", width = 8, height = 5, dpi = 300) #save image png
+getwd()
 #numeric Format
 steps_daily <- steps_daily %>%                        #dataframe with numeric format
   mutate(date_num = as.numeric(date))
@@ -138,30 +143,30 @@ sleep_data <- sleep_data %>%                                                  #m
   )
 str(sleep_data)                                                               #Verify the data structure
 nrow(sleep_data)                                                              #Number of rows 198034
-                                     
+
 sleeep_summary <- sleep_data %>%  #create new table to group by Id and date
-group_by(Id, date) %>%             #data is grouped only by date.
-summarise(                         #calculates totals for each full day.
-  asleep_seconds = sum(value == 1, na.rm = TRUE),
-  restless_seconds = sum(value == 2, na.rm = TRUE),
-  awake_seconds = sum(value == 3, na.rm = TRUE),
-  .groups = 'drop'                 #ungroup after summarizing
-) %>%
-mutate(                            #adds the metric columns based on the daily totals
-  total_seconds_in_bed = asleep_seconds + restless_seconds + awake_seconds, #summarize total seconds in bed
-  hours_sleep=round(total_seconds_in_bed/60,2),                             #calculate hours sleep and convert seconds to hours
-  sleep_efficiency = if_else(
-    total_seconds_in_bed > 0,                              #if the seconds is more that 0, classify the sleep efficiency
-    (asleep_seconds / total_seconds_in_bed) * 100,         #this is ecuation
-    2
-  ),
-  efficiency_category = case_when(
-    sleep_efficiency > 90 ~ "Excellent",
-    sleep_efficiency > 75 ~ "Good",
-    sleep_efficiency > 50 ~ "Regular",
-    TRUE                  ~ "Bad"
+  group_by(Id, date) %>%             #data is grouped only by date.
+  summarise(                         #calculates totals for each full day.
+    asleep_seconds = sum(value == 1, na.rm = TRUE),
+    restless_seconds = sum(value == 2, na.rm = TRUE),
+    awake_seconds = sum(value == 3, na.rm = TRUE),
+    .groups = 'drop'                 #ungroup after summarizing
+  ) %>%
+  mutate(                            #adds the metric columns based on the daily totals
+    total_seconds_in_bed = asleep_seconds + restless_seconds + awake_seconds, #summarize total seconds in bed
+    hours_sleep=round(total_seconds_in_bed/60,2),                             #calculate hours sleep and convert seconds to hours
+    sleep_efficiency = if_else(
+      total_seconds_in_bed > 0,                              #if the seconds is more that 0, classify the sleep efficiency
+      (asleep_seconds / total_seconds_in_bed) * 100,         #this is ecuation
+      2
+    ),
+    efficiency_category = case_when(
+      sleep_efficiency > 90 ~ "Excellent",
+      sleep_efficiency > 75 ~ "Good",
+      sleep_efficiency > 50 ~ "Regular",
+      TRUE                  ~ "Bad"
+    )
   )
-)
 
 #show final result
 print(sleeep_summary)
@@ -179,7 +184,22 @@ ggplot(data = sleeep_summary,
     y = "Sleep hours" 
   ) +
   theme_minimal() +                                                 #remove the legend, since the X axis already shows the ID
-  theme(legend.position = "none")
+  theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), #center title and make it bold
+    plot.subtitle = element_text(size = 10, face = "bold", hjust = 0.5), 
+    strip.text = element_text(size = 8, color = "gray20"),            #titule
+    axis.title = element_text(face = "bold"),                         #bold axis labels
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 6),      #rotate axis x text 
+    axis.text.y = element_text(size = 6),                             #smaller axis x
+    panel.grid.major.x = element_blank(),                             #remove vertical grid lines
+    panel.grid.minor = element_blank(),                               #removed minor grid
+    panel.grid.major.y = element_line(color = "gray80"),              #horizontal lines  light
+    plot.background = element_rect(fill = "gray95", color = NA),      #light gray
+    panel.background = element_rect(fill = "gray95", color = NA),
+    legend.position = "none")
+
+ggsave("distribution_of_sleep_hours_per_user.png", width = 8, height = 5, dpi = 300) #save image png
+getwd()
 
 #now, remove the outliers from the graph above
 #calculate limits for each user
@@ -213,9 +233,22 @@ ggplot(data = sleep_data_no_outliers, aes(x = factor(Id), y = hours_sleep, fill 
   ) +
   theme_bw() +
   theme(
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), #center title and make it bold
+    plot.subtitle = element_text(size = 10, face = "bold", hjust = 0.5), 
+    strip.text = element_text(size = 8, color = "gray20"),            #titule
+    axis.title = element_text(face = "bold"),                         #bold axis labels
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 6),      #rotate axis x text 
+    axis.text.y = element_text(size = 6),                             #smaller axis x
+    panel.grid.major.x = element_blank(),                             #remove vertical grid lines
+    panel.grid.minor = element_blank(),                               #removed minor grid
+    panel.grid.major.y = element_line(color = "gray80"),              #horizontal lines  light
+    plot.background = element_rect(fill = "gray95", color = NA),      #light gray
+    panel.background = element_rect(fill = "gray95", color = NA),
     legend.position = "none",
-    axis.text.x = element_text(angle = 15, hjust = 1) #improve reading of IDs
   )
+
+ggsave("New_distribution_of_sleep_per_user.png", width = 8, height = 5, dpi = 300)
+getwd()
 
 #calculate percentage per category
 percentage_by_quality <- sleep_data_no_outliers %>%
@@ -271,11 +304,21 @@ ggplot(comparasion_scaled, aes(x = date, y = value, color = variable)) +
   ) +
   theme_minimal() +
   theme(
-    plot.title = element_text(hjust = 0.5, size = 15, face = "bold"),    #center title and make it bold
-    strip.text = element_text(size = 9, face = "bold"),                  #titule
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 7),         #rotate axis x text 
-    axis.text.y = element_text(size = 7)                                 #smaller axis x
+    plot.title = element_text(size = 14, face = "bold", hjust = 0.5), #center title and make it bold
+    strip.text = element_text(size = 8, color = "gray20"),            #titule
+    axis.title = element_text(face = "bold"),                         #bold axis labels
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 6),      #rotate axis x text 
+    axis.text.y = element_text(size = 6),                             #smaller axis x
+    panel.grid.major.x = element_blank(),                             #remove vertical grid lines
+    panel.grid.minor = element_blank(),                               #removed minor grid
+    panel.grid.major.y = element_line(color = "gray80"),              #horizontal lines  light
+    plot.background = element_rect(fill = "gray95", color = NA),      #light gray
+    panel.background = element_rect(fill = "gray95", color = NA),
+    legend.position = "none"                              #smaller axis x
   )
+
+ggsave("daily_comparation_sleep_vs_steps.png", width = 8, height = 5, dpi = 300)
+getwd()
 
 correlation_per_user <- comparasion_data %>%
   group_by(Id) %>%                    #group the data by user ID
@@ -324,6 +367,9 @@ ggplot(correlation_per_user, aes(x = type_correlation)) +
     axis.text.x = element_text(angle = 20, hjust = 1)                     #tilt x-axis labels
   )
 
+ggsave("distribution_of_users_by_type_correlation.png", width = 8, height = 5, dpi = 300)
+getwd()
+
 #daily Activity's clean and processes
 colSums(is.na(daily_activity))                      #count empty rows
 sum(duplicated(daily_activity))                     #duplicated values
@@ -360,6 +406,7 @@ daily_activity <- daily_activity %>%                    #remove rows that were n
 head(daily_activity)
 
 #graph that show the percentage of days according to activity level
+
 daily_activity %>%
   count(activity_level_minutes) %>%                  #count how many days fall into each activity level category
   mutate(percent = round(n / sum(n) * 100, 1)) %>%   #calculate the percentage each category represents
@@ -369,15 +416,28 @@ daily_activity %>%
   labs(title = "Percentage of days according to activity level",          
        x = "Activity level",
        y = "Percentage") +
-  theme_minimal()                                      #apply a clean theme
+  theme_minimal() +                     #clean visual style
+  theme(   
+    plot.title = element_text(hjust = 1.2, face = "bold", size = 15),     #bold and centered title
+    plot.subtitle = element_text(hjust = 0.5, size = 11, color = "gray30"),   #subtitle below the title
+    axis.title = element_text(face = "bold", size = 12),                  #bold axis labels
+    axis.text = element_text(size = 10),                                  #size of axis text
+    panel.grid.major.x = element_blank(),                                 #remove vertical grid lines
+    panel.grid.major.y = element_line(color = "gray80"),                  #light horizontal lines
+    panel.grid.minor = element_blank(),                                   #no minor grid lines
+    plot.background = element_rect(fill = "grey", color = NA),            #gray background
+    axis.text.x = element_text(angle = 20, hjust = 1)                     #tilt x-axis labels
+  )
 
+ggsave("Percetage_of_days_according_to_activity_level.png", width = 8, height = 5, dpi = 300)
+getwd()
 #join daily activity y sleep
 #join data sets
 deam_activity <- inner_join(daily_activity, 
-                              comparasion_data %>% 
+                            comparasion_data %>% 
                               mutate(hours_sleep = round(hours_sleep /1, 2)) %>%        #convert total sleep time from minutes to hours and rounded to 2 decimals
                               select(Id, date, hours_sleep),                               #keep only necessary columns
-                              by = c("Id", "date"))                                        #join on matching user ID and date
+                            by = c("Id", "date"))                                        #join on matching user ID and date
 
 #compare sleep averages
 #bar chart showing average hours of sleep by activity level
@@ -390,11 +450,22 @@ deam_activity %>%
   geom_text(aes(label = paste0(round(avg_sleep, 1), " hrs")), #add average values on top of bars
             vjust = -0.5, fontface = "bold") +                #djust text position and make bold
   labs(
-    title = "Average Hours of Sleep According to Daily Activity Level",  #add chart title and axis labels
+    title = "Average hours of sleep according to daily activity level",  #add chart title and axis labels
     x = "Activity Level",
     y = "Hours of Sleep"
   ) +
   theme_minimal() +                                          #apply clean minimalistic theme
   theme(
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 14)  #center the title and make it bold
-  )
+    plot.title = element_text(hjust = 0.6, face = "bold", size = 14),     #bold and centered title
+    plot.subtitle = element_text(hjust = 0.5, size = 11, color = "gray30"),   #subtitle below the title
+    axis.title = element_text(face = "bold", size = 12),                  #bold axis labels
+    axis.text = element_text(size = 10),                                  #size of axis text
+    panel.grid.major.x = element_blank(),                                 #remove vertical grid lines
+    panel.grid.major.y = element_line(color = "gray80"),                  #light horizontal lines
+    panel.grid.minor = element_blank(),                                   #no minor grid lines
+    plot.background = element_rect(fill = "grey", color = NA),            #gray background
+    axis.text.x = element_text(angle = 20, hjust = 1)
+    )
+
+ggsave("Percetage_of_days_according_to_activity_level.png", width = 8, height = 5, dpi = 300)
+getwd()
