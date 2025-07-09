@@ -92,9 +92,9 @@ Bar plot (sleep by activity level)
 
 Based on the findings, here are my recommendations for Bellabeat's marketing strategy:
 
-**Recommendation 1:** Create an experience that encourages consistency through smart notifications and challenges.
+<ins>**Recommendation 1:**<ins> Create an experience that encourages consistency through smart notifications and challenges.
 
-**Problem (insight):** I discovered that many users don't use their device daily. If a user doesn't develop the habit of using it, they're likely to abandon it.
+<ins> **Problem (insight):** <ins> I discovered that many users don't use their device daily. If a user doesn't develop the habit of using it, they're likely to abandon it.
 
 **Solution (Suggestion):**
 *Timely notifications:* Send reminders and motivational messages through the Bellabeat app during times when users are typically most     active (between 12        and 7 p.m.). A message like "It's a great time to go for a walk and reach your step goal!" can motivate the user
