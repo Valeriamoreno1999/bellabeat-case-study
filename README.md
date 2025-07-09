@@ -109,8 +109,8 @@ Based on the findings, here are my recommendations for Bellabeat's marketing str
   
 + **Solution (Suggestion):** Position Bellabeat as a tool for finding balance in life. Instead of aggressive performance marketing, create campaigns that talk         about how small changes in daily activity can improve sleep quality, reduce stress, and increase energy. Some messages would be:
   
-  +*"Bellabeat helps you take care of yourself by finding your own rhythm."*
-  +*"Exercise and mental health: always connected."*
+  + *"Bellabeat helps you take care of yourself by finding your own rhythm."*
+  + *"Exercise and mental health: always connected."*
 
 + **Benefit:** Attract a broader audience of women looking for overall wellness, not just a high-performance fitness tracker. This differentiates Bellabeat from       the competition and creates a stronger emotional connection with its brand.
 
